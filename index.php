@@ -1,5 +1,5 @@
 <?php
-	include $_SERVER['DOCUMENT_ROOT'] . "etc/common.php";
+	include $_SERVER['DOCUMENT_ROOT'] . "/etc/common.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,61 @@
 		<script src="/assets/js/bootstrap.min.js"></script>
 	</head>
 	<body>
-		<h1>Hello, world!</h1>
+		<h1>Smart greenhouse</h1>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div id="temp_inside">Current temp, inside: <span></span></div>
+				<div id="temp_outside">Current temp, outside: <span></span></div>
+				<div id="humidity_inside">Current humidity, inside: <span></span></div>
+				<div id="humidity_outside">Current humidity, outside: <span></span></div>
+				<div id="sun">Is the sun shining: <span></span></div>
+				<div id="window_control" d="open">Click here to Open the window / Click here to close the window</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function update(id){
+				/*$.ajax({
+					url: "ajax.php",
+					method: "POST",
+					data: {
+						action: "update",
+						var: id
+					}
+				}).error(function(data){
+					//
+				}).done(function(data){
+					//
+				});*/
+			}
+
+			$(function(){
+				update("temp_inside");
+				update("temp_outside");
+				update("humidity_inside");
+				update("humidity_outside");
+				update("sun");
+				setInterval(update("temp_inside"), 500);
+				setInterval(update("temp_outside"), 500);
+				setInterval(update("humidity_inside"), 500);
+				setInterval(update("humidity_outside"), 500);
+				setInterval(update("sun"), 500);
+			});
+
+			$("#window_control").click(){
+				console.log($(this).attr("d"));
+				/*$.ajax({
+					url: "ajax.php",
+					method: "POST",
+					data: {
+						action: "window",
+						direction: $(this).attr("d");
+					}
+				}).error(function(data){
+					//
+				}).done(function(data){
+					//
+				});*/
+			}
+		</script>
 	</body>
 </html>
